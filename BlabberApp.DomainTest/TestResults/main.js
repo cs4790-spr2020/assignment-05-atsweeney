@@ -224,8 +224,8 @@ var assemblies = [
   {
     "name": "Default",
     "classes": [
-      { "name": "/Users/stringhamdb/Documents/GitHub/cs4790-spr2020/BlabberApp/BlabberApp.Domain/Entities/Blab.cs", "rp": "_Users_stringhamdb_Documents_GitHub_cs4790_spr2020_BlabberApp_BlabberApp.Domain_Entities_Blab.cs.htm", "cl": 10, "ucl": 25, "cal": 35, "tl": 46, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 0, "lch": [], "bch": [], "hc": [] },
-      { "name": "/Users/stringhamdb/Documents/GitHub/cs4790-spr2020/BlabberApp/BlabberApp.Domain/Entities/User.cs", "rp": "_Users_stringhamdb_Documents_GitHub_cs4790_spr2020_BlabberApp_BlabberApp.Domain_Entities_User.cs.htm", "cl": 16, "ucl": 16, "cal": 32, "tl": 48, "ct": "LineCoverage", "mc": "-", "cb": 2, "tb": 14, "lch": [], "bch": [], "hc": [] },
+      { "name": "/Users/macuser/Dropbox/School/Weber St/CS 4790/assignment-05-atsweeney/BlabberApp.Domain/Entities/Blab.cs", "rp": "_Users_macuser_Dropbox_School_Weber_St_CS_4790_assweeney_BlabberApp.Domain_Entities_Blab.cs.htm", "cl": 10, "ucl": 37, "cal": 47, "tl": 78, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 8, "lch": [], "bch": [], "hc": [] },
+      { "name": "/Users/macuser/Dropbox/School/Weber St/CS 4790/assignment-05-atsweeney/BlabberApp.Domain/Entities/User.cs", "rp": "_Users_macuser_Dropbox_School_Weber_St_CS_4790_assweeney_BlabberApp.Domain_Entities_User.cs.htm", "cl": 16, "ucl": 26, "cal": 42, "tl": 77, "ct": "LineCoverage", "mc": "-", "cb": 2, "tb": 14, "lch": [], "bch": [], "hc": [] },
     ]},
 ];
 

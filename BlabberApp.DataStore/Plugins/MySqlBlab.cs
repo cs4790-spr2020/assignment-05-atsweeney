@@ -97,6 +97,8 @@ namespace BlabberApp.DataStore.Plugins
                 Blab blab = new Blab();
 
                 blab.Id = new Guid(row["sys_id"].ToString());
+                blab.User = new User(row["user_id"].ToString());
+                blab.Message = row["message"].ToString();
 
                 return blab;
             }
@@ -135,11 +137,26 @@ namespace BlabberApp.DataStore.Plugins
         public void Update(IEntity obj)
         {
             Blab blab = (Blab)obj;
+
+            this.Delete(blab);
+            this.Create(blab);
         }
 
         public void Delete(IEntity obj)
         {
             Blab blab = (Blab)obj;
+
+            try
+            {
+                string sql = "DELETE FROM atsweeney.blabs WHERE blabs.sys_id = '" + blab.Id + "'";
+                
+                MySqlCommand cmd = new MySqlCommand(sql, this.dcBlab);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public void DeleteAll()

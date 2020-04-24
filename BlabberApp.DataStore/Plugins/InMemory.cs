@@ -41,7 +41,8 @@ namespace BlabberApp.DataStore.Plugins
 
         public IEnumerable ReadByUserId(string Id)
         {
-            throw new Exception("Not found");
+            //Not yet implemented
+            return null;
         }
 
         public IEntity ReadByUserEmail(string email)

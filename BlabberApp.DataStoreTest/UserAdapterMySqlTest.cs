@@ -10,24 +10,28 @@ namespace BlabberApp.DataStoreTest
     [TestClass]
     public class UserAdapter_MySql_UnitTests
     {
-        private User _user;
-        private UserAdapter _harness;
-        private readonly string _email = "foobar@example.com";
+        //Attributes
+        private User user;
+        private UserAdapter harness;
+        private readonly string email = "tester@example.com";
 
+        //Setup and TearDown
         [TestInitialize]
         public void Setup()
         {
-            _user = new User(_email);
-            _harness = new UserAdapter(new MySqlUser());
-            _harness.RemoveAll();
+            this.user = new User(this.email);
+            this.harness = new UserAdapter(new MySqlUser());
+            this.harness.RemoveAll();
         }
+
         [TestCleanup]
         public void TearDown()
         {
-            User user = new User(_email);
-            _harness.RemoveAll();
+            User user = new User(this.email);
+            this.harness.RemoveAll();
         }
 
+        //Methods
         [TestMethod]
         public void Canary()
         {
@@ -38,26 +42,90 @@ namespace BlabberApp.DataStoreTest
         public void TestAddAndGetUser()
         {
             //Arrange
-            _user.RegisterDTTM =DateTime.Now;
-            _user.LastLoginDTTM = DateTime.Now;
+            this.user.RegisterDTTM =DateTime.Now;
+            this.user.LastLoginDTTM = DateTime.Now;
+
             //Act
-            _harness.Add(_user);
-            User actual = _harness.GetById(_user.Id);
+            this.harness.Add(this.user);
+            User actual = this.harness.GetById(this.user.Id);
+
             //Assert
-            Assert.AreEqual(_user.Id, actual.Id);
+            Assert.AreEqual(this.user.Id, actual.Id);
         }
+
         [TestMethod]
         public void TestAddAndGetAll()
         {
             //Arrange
-            _user.RegisterDTTM =DateTime.Now;
-            _user.LastLoginDTTM = DateTime.Now;
-            _harness.Add(_user);
+            this.user.RegisterDTTM =DateTime.Now;
+            this.user.LastLoginDTTM = DateTime.Now;
+            this.harness.Add(this.user);
+
             //Act
-            ArrayList users = (ArrayList)_harness.GetAll();
+            ArrayList users = (ArrayList)this.harness.GetAll();
             User actual = (User)users[0];
+
             //Assert
-            Assert.AreEqual(_user.Id.ToString(), actual.Id.ToString());
+            Assert.AreEqual(this.user.Id.ToString(), actual.Id.ToString());
+        }
+
+        [TestMethod]
+        public void TestRemoveUser()
+        {
+            //Arrange
+            this.user = new User(this.email);
+            this.harness.Add(user);
+
+            //Act
+            this.harness.Remove(this.user);
+            ArrayList users = (ArrayList)this.harness.GetAll();
+
+            //Assert
+            Assert.AreEqual(0, users.Count);        
+        }
+
+        [TestMethod]
+        public void TestReadByEmail()
+        {
+            //Arrange
+            this.user = new User(this.email);
+            this.harness.Add(this.user);
+
+            //Act
+            User actual = this.harness.GetByEmail(this.email);
+
+            //Assert
+            Assert.AreEqual(this.user.Email, actual.Email);
+        }
+
+        [TestMethod]
+        public void TestReadByID()
+        {
+            //Arrange
+            this.user = new User(this.email);
+            this.harness.Add(this.user);
+
+            //Act
+            User actual = this.harness.GetById(this.user.Id);
+
+            //Assert
+            Assert.AreEqual(this.user.Email, actual.Email);
+        }
+
+        [TestMethod]
+        public void TestUserUpdate()
+        {
+            //Arrange
+            this.user = new User(this.email);
+            this.harness.Add(user);
+
+            //Act
+            this.user.ChangeEmail("tester2@example.com");
+            this.harness.Update(this.user);
+            User actual = this.harness.GetById(this.user.Id);
+
+            //Assert
+            Assert.AreEqual(this.user.Email, actual.Email);
         }
     }
 }

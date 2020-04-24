@@ -18,6 +18,7 @@ namespace BlabberApp.DataStore.Plugins
         public MySqlUser()
         {
             this.dcUser = new MySqlConnection("server=142.93.114.73;database=atsweeney;user=atsweeney;password=letmein");
+            
             try
             {
                 this.dcUser.Open();
@@ -38,6 +39,7 @@ namespace BlabberApp.DataStore.Plugins
         public void Create(IEntity obj)
         {
             User user = (User)obj;
+
             try
             {
                 DateTime now = DateTime.Now;
@@ -46,6 +48,7 @@ namespace BlabberApp.DataStore.Plugins
                      + user.Email + "', '"
                      + now.ToString("yyyy-MM-dd HH:mm:ss")
                      + "', '" + now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                
                 MySqlCommand cmd = new MySqlCommand(sql, this.dcUser);
                 cmd.ExecuteNonQuery();
             }
@@ -60,6 +63,7 @@ namespace BlabberApp.DataStore.Plugins
             try
             {
                 string sql = "SELECT * FROM users";
+
                 MySqlDataAdapter daUser = new MySqlDataAdapter(sql, this.dcUser); // To avoid SQL injection.
                 MySqlCommandBuilder cbUser = new MySqlCommandBuilder(daUser);
                 DataSet dsUsers = new DataSet();
@@ -86,6 +90,7 @@ namespace BlabberApp.DataStore.Plugins
             try
             {
                 string sql = "SELECT * FROM users WHERE users.sys_id = '" + Id.ToString() + "'";
+
                 MySqlDataAdapter daUser = new MySqlDataAdapter(sql, this.dcUser); // To avoid SQL injection.
                 MySqlCommandBuilder cbUser = new MySqlCommandBuilder(daUser);
                 DataSet dsUser = new DataSet();
@@ -107,6 +112,7 @@ namespace BlabberApp.DataStore.Plugins
             try
             {
                 string sql = "SELECT * FROM users WHERE users.email = '" + Id.ToString() + "'";
+
                 MySqlDataAdapter daUser = new MySqlDataAdapter(sql, this.dcUser); // To avoid SQL injection.
                 MySqlCommandBuilder cbUser = new MySqlCommandBuilder(daUser);
                 DataSet dsUser = new DataSet();
@@ -126,16 +132,24 @@ namespace BlabberApp.DataStore.Plugins
         public void Update(IEntity obj)
         {
             User user = (User)obj;
+
+            this.Delete(user);
+            this.Create(user);
         }
 
         public void Delete(IEntity obj)
         {
             User user = (User)obj;
-            try{
-                string sql = "DELETE FROM users WHERE users.email='"+user.Email+"'";
+
+            try
+            {
+                string sql = "DELETE FROM users WHERE users.sys_id = '" + user.Id + "'";
+                
                 MySqlCommand cmd = new MySqlCommand(sql, this.dcUser);
                 cmd.ExecuteNonQuery();
-            } catch(Exception ex) {
+            }
+            catch(Exception ex)
+            {
                 throw new Exception(ex.ToString());
             }
         }
@@ -143,6 +157,7 @@ namespace BlabberApp.DataStore.Plugins
         public void DeleteAll()
         {
                 string sql = "TRUNCATE TABLE users";
+
                 MySqlCommand cmd = new MySqlCommand(sql, this.dcUser);
                 cmd.ExecuteNonQuery();
         }
