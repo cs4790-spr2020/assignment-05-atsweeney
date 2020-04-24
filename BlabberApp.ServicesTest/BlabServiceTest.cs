@@ -45,5 +45,19 @@ namespace BlabberApp.ServicesTest
             //Assert
             Assert.AreEqual("FindUserBlabs", actual.Message);
         }
+
+        [TestMethod]
+        public void BlabServiceCoverage()
+        {
+            User user = new User();
+            BlabService blabService = _blabServiceFactory.CreateBlabService();
+
+            blabService.AddBlab("Message", "tester@example.com");
+
+            Blab anotherBlab = blabService.CreateBlab("message", user);
+
+            Assert.AreEqual(anotherBlab.IsValid(), true);
+            
+        }
     }
 }

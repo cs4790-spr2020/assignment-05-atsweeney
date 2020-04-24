@@ -33,7 +33,6 @@ namespace BlabberApp.DomainTest.Entities
             Guid actual = harness.Id;
             // Assert
             Assert.AreEqual(actual, expected);
-            Assert.AreEqual(true, harness.Id is Guid);
         }
         
         [TestMethod]
@@ -45,6 +44,39 @@ namespace BlabberApp.DomainTest.Entities
             Blab Actual = new Blab();
             // Assert
             Assert.AreEqual(Expected.DTTM.ToString(), Actual.DTTM.ToString());
+        }
+
+        [TestMethod]
+        public void TestConstructorWithMessage()
+        {
+            Blab blab = new Blab("Message 1");
+
+            Assert.AreEqual(blab.Message, "Message 1");
+        }
+
+        [TestMethod]
+        public void TestConstructorWithUser()
+        {
+            User user = new User("tester@example.com");
+            Blab blab = new Blab(user);
+
+            Assert.AreEqual(blab.User.Email, "tester@example.com");
+        }
+
+        [TestMethod]
+        public void TestConstructorWithUserAndBlab()
+        {
+            User user = new User("tester@example.com");
+            Blab blab = new Blab("blab blab blab", user);
+            Assert.AreEqual(blab.User.Email, "tester@example.com");
+            Assert.AreEqual(blab.Message, "blab blab blab");
+        }
+
+        [TestMethod]
+        public void TestConstructorWithString()
+        {
+            Blab blab = new Blab("This is a blab");
+            Assert.AreEqual(blab.Message, "This is a blab");
         }
     }
 }

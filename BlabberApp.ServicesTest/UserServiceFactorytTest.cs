@@ -35,5 +35,19 @@ namespace BlabberApp.ServicesTest
             //Assert
             Assert.IsTrue(userService is UserService);
         }
+
+        [TestMethod]
+        public void BuildMySqlPluginLowerCase()
+        {
+            UserAdapter userAdapter = harness.CreateUserAdapter(harness.CreateUserPlugin("mysql"));
+            Assert.IsTrue(userAdapter is UserAdapter);
+        }
+
+        [TestMethod]
+        public void BuildMySqlPluginUpperCase()
+        {
+            UserAdapter userAdapter = harness.CreateUserAdapter(harness.CreateUserPlugin("MYSQL"));
+            Assert.IsTrue(userAdapter is UserAdapter);
+        }
     }
 }

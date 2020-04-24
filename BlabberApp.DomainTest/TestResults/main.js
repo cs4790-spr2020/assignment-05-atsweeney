@@ -225,7 +225,7 @@ var assemblies = [
     "name": "Default",
     "classes": [
       { "name": "/Users/macuser/Dropbox/School/Weber St/CS 4790/assignment-05-atsweeney/BlabberApp.Domain/Entities/Blab.cs", "rp": "_Users_macuser_Dropbox_School_Weber_St_CS_4790_assweeney_BlabberApp.Domain_Entities_Blab.cs.htm", "cl": 10, "ucl": 37, "cal": 47, "tl": 78, "ct": "LineCoverage", "mc": "-", "cb": 0, "tb": 8, "lch": [], "bch": [], "hc": [] },
-      { "name": "/Users/macuser/Dropbox/School/Weber St/CS 4790/assignment-05-atsweeney/BlabberApp.Domain/Entities/User.cs", "rp": "_Users_macuser_Dropbox_School_Weber_St_CS_4790_assweeney_BlabberApp.Domain_Entities_User.cs.htm", "cl": 16, "ucl": 26, "cal": 42, "tl": 77, "ct": "LineCoverage", "mc": "-", "cb": 2, "tb": 14, "lch": [], "bch": [], "hc": [] },
+      { "name": "/Users/macuser/Dropbox/School/Weber St/CS 4790/assignment-05-atsweeney/BlabberApp.Domain/Entities/User.cs", "rp": "_Users_macuser_Dropbox_School_Weber_St_CS_4790_assweeney_BlabberApp.Domain_Entities_User.cs.htm", "cl": 31, "ucl": 11, "cal": 42, "tl": 77, "ct": "LineCoverage", "mc": "-", "cb": 7, "tb": 14, "lch": [], "bch": [], "hc": [] },
     ]},
 ];
 

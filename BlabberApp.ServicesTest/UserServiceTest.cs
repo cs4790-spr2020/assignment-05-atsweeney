@@ -32,6 +32,16 @@ namespace BlabberApp.ServicesTest
         }
 
         [TestMethod]
+        public void TestCreateUser()
+        {
+            UserService userService = _userServiceFactory.CreateUserService();
+
+            User expected = userService.CreateUser("tester@example.com");
+            
+            Assert.IsTrue(expected is User);
+        }
+
+        [TestMethod]
         public void AddNewUserSuccessTest()
         {
             //Arrange
@@ -44,5 +54,36 @@ namespace BlabberApp.ServicesTest
             //Assert
             Assert.AreEqual(expected.Email, actual.Email);
         }
+
+        [TestMethod]
+        public void TestUserDoesNotMatch()
+        {
+            //Arrange
+            string email = "user@example.com"; 
+            UserService userService = _userServiceFactory.CreateUserService();
+            userService.AddNewUser("tester@example.com");
+
+            //Act
+            User actual = userService.FindUser("tester@example.com");
+            
+            //Assert
+            Assert.AreNotEqual(email, actual.Email);
+        }
+
+        [TestMethod]
+        public void GetAll()
+        {
+            UserService userService = _userServiceFactory.CreateUserService();
+            userService.AddNewUser("tester1@example.com");
+            userService.AddNewUser("tester2@example.com");
+            userService.AddNewUser("tester3@example.com");
+            
+            //Act
+            IEnumerable users = userService.GetAll();
+            
+            //Assert
+            Assert.AreEqual(3, (users as ArrayList).Count);
+        }
+        
     }
 }

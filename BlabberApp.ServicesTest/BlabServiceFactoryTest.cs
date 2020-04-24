@@ -20,6 +20,16 @@ namespace BlabberApp.ServicesTest
         }
 
         [TestMethod]
+        public void BuildAdapterTest()
+        {
+            //Arrange and Act
+            BlabAdapter blabAdapter = harness.CreateBlabAdapter();
+            //Assert
+            Assert.IsTrue(blabAdapter is BlabAdapter);
+        }
+
+
+        [TestMethod]
         public void BuildAdapterPluginTest()
         {
             //Arrange and Act
@@ -34,6 +44,20 @@ namespace BlabberApp.ServicesTest
             BlabService blabService = harness.CreateBlabService();
             //Assert
             Assert.IsTrue(blabService is BlabService);
+        }
+
+        [TestMethod]
+        public void BuildMySqlPluginLowerCase()
+        {
+            BlabAdapter blabAdapter = harness.CreateBlabAdapter(harness.CreateBlabPlugin("mysql"));
+            Assert.IsTrue(blabAdapter is BlabAdapter);
+        }
+
+        [TestMethod]
+        public void BuildMySqlPluginUpperCase()
+        {
+            BlabAdapter blabAdapter = harness.CreateBlabAdapter(harness.CreateBlabPlugin("MYSQL"));
+            Assert.IsTrue(blabAdapter is BlabAdapter);
         }
     }
 }

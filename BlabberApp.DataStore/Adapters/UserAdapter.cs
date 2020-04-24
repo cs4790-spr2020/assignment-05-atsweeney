@@ -102,9 +102,9 @@ namespace BlabberApp.DataStore.Adapters
                 User user = (User)this.plugin.ReadByUserEmail(email);
                 return user;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new UserAdapterNotFoundException(ex.ToString());
+                throw new UserAdapterNotFoundException("User not registered!");
             }
         }
     }

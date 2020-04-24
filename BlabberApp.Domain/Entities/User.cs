@@ -32,14 +32,14 @@ namespace BlabberApp.Domain.Entities
         public void ChangeEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email) || email.Length > 50)
-                throw new FormatException("Email is invalid");
+                throw new FormatException("Invalid email");
             try
             {
                 MailAddress m = new MailAddress(email); 
             }
             catch (FormatException)
             {
-                throw new FormatException(email + " is invalid");
+                throw new FormatException("Invalid email");
             }
             Email = email;
         }
